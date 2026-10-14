@@ -1,0 +1,10 @@
+const express = require("express");
+const { createProxyMiddleware } = require("http-proxy-middleware");
+const path = require("path");
+const app = express();
+const PORT = process.env.PORT || 3000;
+app.use("/api/products", createProxyMiddleware({target: process.env.PRODUCT_SERVICE_URL || "http://product-service:4001", changeOrigin: true}));
+app.use("/api/orders", createProxyMiddleware({target: process.env.ORDER_SERVICE_URL || "http://order-service:4002", changeOrigin: true}));
+app.use(express.static(path.join(__dirname, "public")));
+app.get("*", (_req,res) => res.sendFile(path.join(__dirname,"public","index.html")));
+app.listen(PORT,()=>console.log(`API Gateway listening on ${PORT}`));

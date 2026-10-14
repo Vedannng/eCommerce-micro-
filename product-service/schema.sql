@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS products_db;
+USE products_db;
+CREATE TABLE IF NOT EXISTS products(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(120) NOT NULL,description VARCHAR(500) NOT NULL,price DECIMAL(10,2) NOT NULL,image VARCHAR(500) DEFAULT '',stock INT NOT NULL DEFAULT 20,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+INSERT INTO products(name,description,price,image,stock)
+SELECT * FROM (SELECT 'Wireless Headphones','Comfortable headphones for music and calls.',1499.00,'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600',20 UNION ALL SELECT 'Running Shoes','Lightweight shoes for daily workouts.',2199.00,'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600',15 UNION ALL SELECT 'Smart Watch','Track your activity and everyday notifications.',2999.00,'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600',12 UNION ALL SELECT 'Backpack','A practical backpack for college and travel.',999.00,'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600',25) AS sample WHERE NOT EXISTS(SELECT 1 FROM products LIMIT 1);

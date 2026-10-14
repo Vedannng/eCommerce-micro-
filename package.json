@@ -1,0 +1,11 @@
+{
+  "name": "monolithic-ecommerce",
+  "version": "1.0.0",
+  "description": "A beginner-friendly monolithic e-commerce application using Express and MySQL",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "dev": "node --watch server.js" },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.14.0"
+  }
+}
